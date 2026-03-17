@@ -15,9 +15,33 @@ class AppTextStyles {
     fontWeight: .bold,
   );
 
-  static const TextStyle body = TextStyle(
-    color: AppColors.darkGrey,
+  static const TextStyle headerDark = TextStyle(
+    color: AppColors.dark,
+    fontSize: 24,
+    fontWeight: .bold,
+  );
+
+  static const TextStyle bodyLight = TextStyle(
+    color: AppColors.bodyGrey,
     fontSize: 18,
     fontWeight: .normal,
+  );
+
+  static const TextStyle body = TextStyle(
+    color: AppColors.dark,
+    fontSize: 18,
+    fontWeight: .bold,
+  );
+
+  static const TextStyle title = TextStyle(
+    color: AppColors.darkGrey,
+    fontSize: 16,
+    fontWeight: .normal,
+  );
+
+  static const TextStyle subtitle = TextStyle(
+    color: AppColors.darkGrey,
+    fontSize: 14,
+    fontWeight: .bold,
   );
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'features/personal_data_collection/presentation/placeholders/initial_step_placeholder.dart';
+import 'package:nutrinstruct/features/personal_data_collection/presentation/placeholders/age_step_placeholder.dart';
+import 'package:nutrinstruct/features/personal_data_collection/presentation/placeholders/gender_step_placeholder.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,6 +33,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: InitialStepPlaceholder());
+    return Scaffold(body: GenderStepPlaceholder());
   }
 }

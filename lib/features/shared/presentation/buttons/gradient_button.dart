@@ -19,6 +19,15 @@ class GradientButton extends StatelessWidget {
     this.icon,
   });
 
+  const GradientButton.navigation({
+    super.key,
+    this.width,
+    required this.height,
+    required this.onTap,
+    required this.title,
+    this.icon = Icons.arrow_forward_ios_rounded,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Material(
