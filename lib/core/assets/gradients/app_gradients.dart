@@ -5,4 +5,8 @@ class AppGradients {
   static const Gradient lilacBlue = LinearGradient(
     colors: [AppColors.lilac, AppColors.lightBlue],
   );
+
+  static const Gradient cryLimeGreen = LinearGradient(
+    colors: [AppColors.cryGreen, AppColors.limeGreen],
+  );
 }

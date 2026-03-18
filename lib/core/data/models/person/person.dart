@@ -11,18 +11,18 @@ part 'person.g.dart';
 
 @JsonSerializable()
 class Person {
-  final int age;
-  final Gender gender;
-  final Parameters parameters;
-  final ActivityLevel activityLevel;
-  final Purposes purpose;
+  final int? age;
+  final Gender? gender;
+  final Parameters? parameters;
+  final ActivityLevel? activityLevel;
+  final Purposes? purpose;
 
   const Person({
-    required this.age,
-    required this.gender,
-    required this.parameters,
-    required this.activityLevel,
-    required this.purpose,
+    this.age,
+    this.gender,
+    this.parameters,
+    this.activityLevel,
+    this.purpose,
   });
 
   Person copyWith({

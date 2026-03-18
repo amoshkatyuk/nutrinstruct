@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:nutrinstruct/core/data/models/person/person.dart';
 
 enum PersonalDataCollectionStatus {
+  initial,
   ageCollecting,
   genderCollecting,
   parametersCollecting,
@@ -24,7 +25,7 @@ class PersonalDataCollectionState extends Equatable {
 
   factory PersonalDataCollectionState.initial() =>
       const PersonalDataCollectionState(
-        status: PersonalDataCollectionStatus.genderCollecting,
+        status: PersonalDataCollectionStatus.initial,
       );
 
   PersonalDataCollectionState copyWith({

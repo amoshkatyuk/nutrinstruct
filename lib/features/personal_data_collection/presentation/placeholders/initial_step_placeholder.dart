@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nutrinstruct/core/assets/app_text_styles/app_text_styles.dart';
 import 'package:nutrinstruct/core/constants/app_strings.dart';
+import 'package:nutrinstruct/features/personal_data_collection/domain/cubit/personal_data_collection_cubit.dart';
 import 'package:nutrinstruct/features/personal_data_collection/presentation/widgets/circled_checkmark.dart';
 import 'package:nutrinstruct/features/shared/presentation/buttons/gradient_button.dart';
 
@@ -80,7 +82,11 @@ class InitialStepPlaceholder extends StatelessWidget {
               ),
             ),
 
-            GradientButton(title: 'Начать', onTap: () {}, height: 54),
+            GradientButton(
+              title: 'Начать',
+              onTap: context.read<PersonalDataCollectionCubit>().start,
+              height: 54,
+            ),
           ],
         ),
       ),

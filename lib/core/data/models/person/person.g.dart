@@ -7,19 +7,24 @@ part of 'person.dart';
 // **************************************************************************
 
 Person _$PersonFromJson(Map<String, dynamic> json) => Person(
-  age: (json['age'] as num).toInt(),
-  gender: $enumDecode(_$GenderEnumMap, json['gender']),
-  parameters: Parameters.fromJson(json['parameters'] as Map<String, dynamic>),
-  activityLevel: $enumDecode(_$ActivityLevelEnumMap, json['activityLevel']),
-  purpose: $enumDecode(_$PurposesEnumMap, json['purpose']),
+  age: (json['age'] as num?)?.toInt(),
+  gender: $enumDecodeNullable(_$GenderEnumMap, json['gender']),
+  parameters: json['parameters'] == null
+      ? null
+      : Parameters.fromJson(json['parameters'] as Map<String, dynamic>),
+  activityLevel: $enumDecodeNullable(
+    _$ActivityLevelEnumMap,
+    json['activityLevel'],
+  ),
+  purpose: $enumDecodeNullable(_$PurposesEnumMap, json['purpose']),
 );
 
 Map<String, dynamic> _$PersonToJson(Person instance) => <String, dynamic>{
   'age': instance.age,
-  'gender': _$GenderEnumMap[instance.gender]!,
+  'gender': _$GenderEnumMap[instance.gender],
   'parameters': instance.parameters,
-  'activityLevel': _$ActivityLevelEnumMap[instance.activityLevel]!,
-  'purpose': _$PurposesEnumMap[instance.purpose]!,
+  'activityLevel': _$ActivityLevelEnumMap[instance.activityLevel],
+  'purpose': _$PurposesEnumMap[instance.purpose],
 };
 
 const _$GenderEnumMap = {Gender.male: 'male', Gender.female: 'female'};

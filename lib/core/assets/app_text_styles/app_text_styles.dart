@@ -44,4 +44,10 @@ class AppTextStyles {
     fontSize: 14,
     fontWeight: .bold,
   );
+
+  static const TextStyle textFieldLabel = TextStyle(
+    color: AppColors.bodyGrey,
+    fontSize: 18,
+    fontWeight: .bold,
+  );
 }

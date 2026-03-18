@@ -48,7 +48,7 @@ class PersonalDataButton extends StatelessWidget {
                     ],
                   )
                 : Padding(
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(14),
                     child: Row(
                       children: [
                         Icon(icon),

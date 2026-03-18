@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:nutrinstruct/features/personal_data_collection/data/repositories/data_collection_repository.dart';
+import 'package:nutrinstruct/features/personal_data_collection/domain/cubit/personal_data_collection_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../features/personal_data_collection/domain/use_cases/delete_person_use_case.dart';
@@ -35,6 +36,16 @@ class ServiceLocator {
     );
     getIt.registerLazySingleton(
       () => DeletePersonUseCase(getIt<DataCollectionRepository>()),
+    );
+    //#endregion
+
+    //#redion Cubits
+    getIt.registerFactory(
+      () => PersonalDataCollectionCubit(
+        savePersonUseCase: getIt<SavePersonUseCase>(),
+        getPersonUseCase: getIt<GetPersonUseCase>(),
+        deletePersonUseCase: getIt<DeletePersonUseCase>(),
+      ),
     );
     //#endregion
 
