@@ -11,6 +11,7 @@ import 'package:nutrinstruct/features/personal_data_collection/presentation/plac
 import 'package:nutrinstruct/features/personal_data_collection/presentation/placeholders/parameters_step_placeholder.dart';
 import 'package:nutrinstruct/features/personal_data_collection/presentation/placeholders/purpose_step_placeholder.dart';
 import 'package:nutrinstruct/features/personal_data_collection/presentation/placeholders/result_ready_placeholder.dart';
+import 'package:nutrinstruct/features/personal_data_collection/presentation/widgets/onboarding_progress_indicator.dart';
 
 @RoutePage()
 class PersonalDataCollectionScreen extends StatefulWidget {
@@ -80,10 +81,21 @@ class _PersonalDataCollectionScreenState
             },
             builder: (context, state) {
               return Scaffold(
-                body: PageView(
-                  controller: _pageController,
-                  physics: const NeverScrollableScrollPhysics(),
-                  children: _pages,
+                body: Column(
+                  children: [
+                    SizedBox(height: MediaQuery.of(context).padding.top),
+                    Align(
+                      alignment: .bottomLeft,
+                      child: OnboardingProgressIndicator(status: state.status),
+                    ),
+                    Expanded(
+                      child: PageView(
+                        controller: _pageController,
+                        physics: const NeverScrollableScrollPhysics(),
+                        children: _pages,
+                      ),
+                    ),
+                  ],
                 ),
               );
             },

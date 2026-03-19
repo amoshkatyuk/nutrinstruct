@@ -47,5 +47,5 @@ class AppStrings {
   static const String increaseWeightSubtitle = 'Профицит калорий';
   static const String readyTitle = 'Готово!';
   static const String readySubtitle =
-      'ИИ создаст вашу персональную диету на основе введенных данных';
+      'ИИ создаст вашу персональную\n диету на основе введенных данных';
 }

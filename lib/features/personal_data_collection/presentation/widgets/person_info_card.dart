@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nutrinstruct/core/data/models/person/person.dart';
+import 'package:nutrinstruct/core/utils/extensions/gender_model_to_string.dart';
 import 'package:nutrinstruct/features/shared/presentation/cards/app_card.dart';
 
 class PersonInfoCard extends StatelessWidget {
@@ -12,9 +13,22 @@ class PersonInfoCard extends StatelessWidget {
     return AppCard(
       child: Column(
         children: [
-          Row(children: [Text('Возраст'), Text(person.age.toString())]),
-          Row(children: [Text('Пол'), Text(person.gender.toString())]),
           Row(
+            mainAxisAlignment: .spaceBetween,
+            children: [Text('Возраст'), Text(person.age.toString())],
+          ),
+
+          const SizedBox(height: 6),
+
+          Row(
+            mainAxisAlignment: .spaceBetween,
+            children: [Text('Пол'), Text(person.gender!.label)],
+          ),
+
+          const SizedBox(height: 6),
+
+          Row(
+            mainAxisAlignment: .spaceBetween,
             children: [
               Text('Параметры'),
               Text(
