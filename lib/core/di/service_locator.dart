@@ -1,12 +1,17 @@
+import 'package:genkit/genkit.dart';
+import 'package:genkit_google_genai/genkit_google_genai.dart';
 import 'package:get_it/get_it.dart';
+import 'package:nutrinstruct/core/config/app_config.dart';
+import 'package:nutrinstruct/core/utils/services/ai_service.dart';
 import 'package:nutrinstruct/features/personal_data_collection/data/repositories/data_collection_repository.dart';
 import 'package:nutrinstruct/features/personal_data_collection/domain/cubit/personal_data_collection_cubit.dart';
+import 'package:nutrinstruct/features/personal_data_collection/domain/use_cases/generate_diet_use_case.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../features/personal_data_collection/domain/use_cases/delete_person_use_case.dart';
 import '../../features/personal_data_collection/domain/use_cases/get_person_use_case.dart';
 import '../../features/personal_data_collection/domain/use_cases/save_person_use_case.dart';
-import '../config/app_config.dart';
+import '../utils/prompt_builders/prompt_builder.dart';
 
 class ServiceLocator {
   final getIt = GetIt.instance;
@@ -19,6 +24,18 @@ class ServiceLocator {
     getIt.registerSingletonAsync<SharedPreferences>(
       () async => await SharedPreferences.getInstance(),
     );
+
+    // Genkit
+    getIt.registerLazySingleton<Genkit>(() {
+      final config = getIt<AppConfig>();
+
+      return Genkit(plugins: [googleAI(apiKey: config.apiKey)]);
+    });
+
+    //#region PromptBuilders
+    getIt.registerLazySingleton<PromptBuilder>(() => PromptBuilderImpl());
+
+    //#endregion
 
     //#region Repositories
     getIt.registerLazySingleton<DataCollectionRepository>(
@@ -37,6 +54,12 @@ class ServiceLocator {
     getIt.registerLazySingleton(
       () => DeletePersonUseCase(getIt<DataCollectionRepository>()),
     );
+    getIt.registerLazySingleton(
+      () => GenerateDietUseCase(
+        promptBuilder: getIt<PromptBuilder>(),
+        aiService: getIt<AiService>(),
+      ),
+    );
     //#endregion
 
     //#redion Cubits
@@ -45,7 +68,14 @@ class ServiceLocator {
         savePersonUseCase: getIt<SavePersonUseCase>(),
         getPersonUseCase: getIt<GetPersonUseCase>(),
         deletePersonUseCase: getIt<DeletePersonUseCase>(),
+        generateDietUseCase: getIt<GenerateDietUseCase>(),
       ),
+    );
+    //#endregion
+
+    //#redion Services
+    getIt.registerLazySingleton<AiService>(
+      () => AiServiceImpl(getIt<Genkit>()),
     );
     //#endregion
 

@@ -48,4 +48,10 @@ class AppStrings {
   static const String readyTitle = 'Готово!';
   static const String readySubtitle =
       'ИИ создаст вашу персональную\n диету на основе введенных данных';
+  static const String dietDetailsTitle = 'Ваша диета';
+  static const String dietDetailsSubtitle = 'Персональный план питания от ИИ';
+  static const String calories = 'ккал';
+  static const String protein = 'белки';
+  static const String carbs = 'углев';
+  static const String fats = 'жиры';
 }

@@ -8,6 +8,7 @@ import 'package:get_it/get_it.dart';
 import 'package:nutrinstruct/core/config/env_loader.dart';
 import 'package:nutrinstruct/core/di/service_locator.dart';
 import 'package:nutrinstruct/features/personal_data_collection/domain/cubit/personal_data_collection_cubit.dart';
+import 'package:nutrinstruct/features/personal_data_collection/domain/use_cases/generate_diet_use_case.dart';
 import 'package:nutrinstruct/features/personal_data_collection/domain/use_cases/save_person_use_case.dart';
 import 'package:nutrinstruct/router/router.dart';
 
@@ -64,6 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
             savePersonUseCase: GetIt.I<SavePersonUseCase>(),
             getPersonUseCase: GetIt.I<GetPersonUseCase>(),
             deletePersonUseCase: GetIt.I<DeletePersonUseCase>(),
+            generateDietUseCase: GetIt.I<GenerateDietUseCase>(),
           ),
         ),
       ],

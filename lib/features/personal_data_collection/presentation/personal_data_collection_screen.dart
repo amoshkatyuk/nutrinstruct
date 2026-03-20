@@ -6,6 +6,7 @@ import 'package:nutrinstruct/features/personal_data_collection/domain/cubit/pers
 import 'package:nutrinstruct/features/personal_data_collection/domain/cubit/personal_data_collection_state.dart';
 import 'package:nutrinstruct/features/personal_data_collection/presentation/placeholders/activity_level_step_placeholder.dart';
 import 'package:nutrinstruct/features/personal_data_collection/presentation/placeholders/age_step_placeholder.dart';
+import 'package:nutrinstruct/features/personal_data_collection/presentation/placeholders/diet_details_placeholder.dart';
 import 'package:nutrinstruct/features/personal_data_collection/presentation/placeholders/gender_step_placeholder.dart';
 import 'package:nutrinstruct/features/personal_data_collection/presentation/placeholders/initial_step_placeholder.dart';
 import 'package:nutrinstruct/features/personal_data_collection/presentation/placeholders/parameters_step_placeholder.dart';
@@ -34,6 +35,7 @@ class _PersonalDataCollectionScreenState
     ActivityLevelStepPlaceholder(),
     PurposeStepPlaceholder(),
     ResultReadyPlaceholder(),
+    DietDetailsPlaceholder(),
   ];
 
   int _statusToIndex(PersonalDataCollectionStatus status) {
@@ -45,6 +47,8 @@ class _PersonalDataCollectionScreenState
       PersonalDataCollectionStatus.activityLevelCollecting => 4,
       PersonalDataCollectionStatus.purposeCollecting => 5,
       PersonalDataCollectionStatus.resultReady => 6,
+      PersonalDataCollectionStatus.dietGenerating => 6,
+      PersonalDataCollectionStatus.dietGeneratingComplete => 7,
       _ => 0,
     };
   }

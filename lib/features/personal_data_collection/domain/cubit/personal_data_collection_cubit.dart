@@ -6,6 +6,7 @@ import 'package:nutrinstruct/core/data/models/parameters/parameters.dart';
 import 'package:nutrinstruct/core/utils/validators/age_validator.dart';
 import 'package:nutrinstruct/features/personal_data_collection/domain/cubit/personal_data_collection_state.dart';
 import 'package:nutrinstruct/features/personal_data_collection/domain/use_cases/delete_person_use_case.dart';
+import 'package:nutrinstruct/features/personal_data_collection/domain/use_cases/generate_diet_use_case.dart';
 import 'package:nutrinstruct/features/personal_data_collection/domain/use_cases/get_person_use_case.dart';
 import 'package:nutrinstruct/features/personal_data_collection/domain/use_cases/save_person_use_case.dart';
 
@@ -16,14 +17,17 @@ class PersonalDataCollectionCubit extends Cubit<PersonalDataCollectionState> {
   final SavePersonUseCase _savePersonUseCase;
   final GetPersonUseCase _getPersonUseCase;
   final DeletePersonUseCase _deletePersonUseCase;
+  final GenerateDietUseCase _generateDietUseCase;
 
   PersonalDataCollectionCubit({
     required SavePersonUseCase savePersonUseCase,
     required GetPersonUseCase getPersonUseCase,
     required DeletePersonUseCase deletePersonUseCase,
+    required GenerateDietUseCase generateDietUseCase,
   }) : _savePersonUseCase = savePersonUseCase,
        _getPersonUseCase = getPersonUseCase,
        _deletePersonUseCase = deletePersonUseCase,
+       _generateDietUseCase = generateDietUseCase,
        super(PersonalDataCollectionState.initial());
 
   Future<void> init() async {
@@ -157,6 +161,40 @@ class PersonalDataCollectionCubit extends Cubit<PersonalDataCollectionState> {
         status: PersonalDataCollectionStatus.resultReady,
       ),
     );
+    generateDiet();
+  }
+
+  Future<void> generateDiet() async {
+    final person = state.person;
+    if (person == null) {
+      emit(
+        state.copyWith(
+          status: PersonalDataCollectionStatus.error,
+          errorMessage: 'Person is null',
+        ),
+      );
+      return;
+    }
+
+    try {
+      emit(state.copyWith(status: PersonalDataCollectionStatus.dietGenerating));
+
+      final aiResponse = await _generateDietUseCase.execute(person);
+
+      emit(
+        state.copyWith(
+          status: PersonalDataCollectionStatus.dietGeneratingComplete,
+          aiResponse: aiResponse.data,
+        ),
+      );
+    } catch (e) {
+      emit(
+        state.copyWith(
+          status: PersonalDataCollectionStatus.error,
+          errorMessage: e.toString(),
+        ),
+      );
+    }
   }
 
   Future<void> save() async {

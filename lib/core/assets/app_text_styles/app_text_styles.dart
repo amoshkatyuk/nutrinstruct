@@ -50,4 +50,16 @@ class AppTextStyles {
     fontSize: 18,
     fontWeight: .bold,
   );
+
+  static const TextStyle nutrientCardBold = TextStyle(
+    color: AppColors.dark,
+    fontSize: 16,
+    fontWeight: .bold,
+  );
+
+  static const TextStyle nutrientCardNormal = TextStyle(
+    color: AppColors.asphalt,
+    fontSize: 14,
+    fontWeight: .normal,
+  );
 }
