@@ -12,6 +12,7 @@ import 'package:nutrinstruct/features/personal_data_collection/presentation/plac
 import 'package:nutrinstruct/features/personal_data_collection/presentation/placeholders/parameters_step_placeholder.dart';
 import 'package:nutrinstruct/features/personal_data_collection/presentation/placeholders/purpose_step_placeholder.dart';
 import 'package:nutrinstruct/features/personal_data_collection/presentation/placeholders/result_ready_placeholder.dart';
+import 'package:nutrinstruct/features/personal_data_collection/presentation/placeholders/test_page.dart';
 import 'package:nutrinstruct/features/personal_data_collection/presentation/widgets/onboarding_progress_indicator.dart';
 
 @RoutePage()
@@ -28,6 +29,7 @@ class _PersonalDataCollectionScreenState
   final _pageController = PageController();
 
   static const _pages = [
+    TestPage(),
     InitialStepPlaceholder(),
     AgeStepPlaceholder(),
     GenderStepPlaceholder(),

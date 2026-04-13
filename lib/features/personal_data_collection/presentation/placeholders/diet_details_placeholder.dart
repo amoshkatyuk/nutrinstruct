@@ -3,9 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nutrinstruct/core/assets/app_colors/app_colors.dart';
 import 'package:nutrinstruct/core/assets/app_text_styles/app_text_styles.dart';
 import 'package:nutrinstruct/core/constants/app_strings.dart';
+import 'package:nutrinstruct/core/utils/extensions/int_to_weight.dart';
 import 'package:nutrinstruct/features/personal_data_collection/domain/cubit/personal_data_collection_cubit.dart';
 import 'package:nutrinstruct/features/personal_data_collection/domain/cubit/personal_data_collection_state.dart';
 import 'package:nutrinstruct/features/personal_data_collection/presentation/widgets/nutrient_card.dart';
+
+import '../widgets/meal_card.dart';
 
 class DietDetailsPlaceholder extends StatelessWidget {
   const DietDetailsPlaceholder({super.key});
@@ -53,23 +56,36 @@ class DietDetailsPlaceholder extends StatelessWidget {
                         color: AppColors.protein,
                         icon: Icons.fitness_center_rounded,
                         title: AppStrings.protein,
-                        subtitle: state.aiResponse!.proteins.toString(),
+                        subtitle: state.aiResponse!.proteins.toGram(),
                       ),
 
                       NutrientCard(
                         color: AppColors.carbs,
                         icon: Icons.local_fire_department_rounded,
                         title: AppStrings.carbs,
-                        subtitle: state.aiResponse!.carbonhydrates.toString(),
+                        subtitle: state.aiResponse!.carbonhydrates.toGram(),
                       ),
 
                       NutrientCard(
                         color: AppColors.fats,
                         icon: Icons.local_fire_department_rounded,
                         title: AppStrings.fats,
-                        subtitle: state.aiResponse!.fats.toString(),
+                        subtitle: state.aiResponse!.fats.toGram(),
                       ),
+
+                      const SizedBox(height: 20),
                     ],
+                  ),
+                ),
+                Expanded(
+                  child: ListView.separated(
+                    itemCount: state.aiResponse!.meals.length,
+                    separatorBuilder: (_, _) => const SizedBox(height: 12),
+                    itemBuilder: (context, index) {
+                      final meal = state.aiResponse!.meals[index];
+
+                      return MealCard(meal: meal);
+                    },
                   ),
                 ),
               ],

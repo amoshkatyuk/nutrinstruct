@@ -1,5 +1,9 @@
-extension IntToWeight on int {
-  toGram() {
-    return '${this.toString()}г'
+extension IntToView on int {
+  String toGram() {
+    return '$thisг';
+  }
+
+  String toCalories() {
+    return '$this ккал';
   }
 }
